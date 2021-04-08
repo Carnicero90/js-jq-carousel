@@ -1,0 +1,40 @@
+/* COMMON
+   ======================= */
+
+
+
+
+/* ======================= */
+
+/* MACRO LAYOUT
+   ======================= */
+
+/* ======================= */
+
+/* MICRO LAYOUT
+   ======================= */
+.slides-container {
+    padding-top: 30px;
+}
+
+.slides {
+    width: 80%;
+    height: 60vh;
+    padding: 5%;
+    max-width: 900px;
+    overflow: hidden;
+}
+
+.slides img {
+    display: none;
+}
+
+.slides img.active {
+    display: initial;
+}
+
+.shift {
+    font-size: 2rem;
+}
+
+/* ======================= */
