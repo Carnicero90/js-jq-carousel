@@ -1,28 +1,12 @@
-slider('.slides-container .shift', '.slides img', 'active')
+const CAROUSEL_TRIGGERS = document.getElementsByClassName('shift');
+const SLIDES = document.getElementsByClassName('slide');
+const FOCUSED_CLASS = 'active';
 
-function slider(carouselSelector, slideSelector, activeClass) {
-    $(carouselSelector).click(
-        function (e) {
-            // CURRENTLY ACTIVE ITEM
-            var currentSlide = $(slideSelector + '.' + activeClass);
-
-            if (e.target.id == "shift-left") {
-                var next = currentSlide.prev();
-                // IF LEFT ---> SELECT LEFT ITEM ; (IF !(LEFT ITEM) ---> RESTART FROM FIRST ITEM RIGHT)
-                if (currentSlide.is($(slideSelector + ':first-of-type'))) {
-                    next = $(slideSelector + ':last-of-type');
-                }
-            } else {
-                var next = currentSlide.next();
-                // IF RIGHT ---> SELECT RIGHT ITEM ; (IF !(RIGHT ITEM) ---> RESTART FROM FIRST ITEM LEFT)
-                if (currentSlide.is($(slideSelector + ':last-of-type'))) {
-                    next = $(slideSelector + ':first-of-type');
-                }
-            }
-            // MAKE CURRENTLY ACTIVE ITEM INACTIVE
-            currentSlide.removeClass(activeClass);
-            // SHOW NEXT (OR PREVIOUS) ITEM
-            next.addClass(activeClass);
-        }
-    )
+for (item of CAROUSEL_TRIGGERS) {
+    item.addEventListener('click', function () {
+        const activeSlide = document.getElementsByClassName(`${FOCUSED_CLASS}`)[0]
+        let next = this.id === 'shift-left' ? activeSlide.nextElementSibling || SLIDES[0] : activeSlide.previousElementSibling || SLIDES[SLIDES.length - 1];
+        activeSlide.classList.remove(FOCUSED_CLASS);
+        next.classList.add(FOCUSED_CLASS);
+    })
 }
